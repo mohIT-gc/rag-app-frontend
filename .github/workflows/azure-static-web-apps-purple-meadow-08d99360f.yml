@@ -30,7 +30,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           app_location: "/" # App source code path
           api_location: "" # Api source code path - optional
-          custom_build_command: 'npm install --unsafe-perm && ./node_modules/.bin/ng build --configuration production'
+          custom_build_command: 'npm install --unsafe-perm && chmod +x ./node_modules/.bin/ng && ./node_modules/.bin/ng build --configuration production'
           output_location: "dist/rag-app-frontend" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######          
 
