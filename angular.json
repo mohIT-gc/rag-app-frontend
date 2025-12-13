@@ -10,7 +10,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/rag-app-frontemd",
+            "outputPath": "dist/rag-app-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -42,11 +42,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "rag-ui:build"
+            "buildTarget": "rag-app-frontend:build"
           },
           "configurations": {
             "production": {
-              "buildTarget": "rag-ui:build:production"
+              "buildTarget": "rag-app-frontend:build:production"
             }
           }
         }
