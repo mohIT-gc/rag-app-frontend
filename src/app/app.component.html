@@ -1,0 +1,67 @@
+<div class="app-container">
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+
+  <section class="card config-card">
+    <h3>Configuration</h3>
+    <div class="config-grid">
+      <div class="col">
+        <label>Azure Endpoint</label>
+        <input class="form-input" type="text" [(ngModel)]="azureEndpoint" placeholder="https://your-resource.openai.azure.com" />
+
+        <label>OpenAI Embedding Deployment Name</label>
+        <input class="form-input" type="text" [(ngModel)]="embeddingDeploymentName" placeholder="text-embedding-3-small" />
+
+        <label>OpenAI Chat Completion Deployment Name</label>
+        <input class="form-input" type="text" [(ngModel)]="chatCompletionDeploymentName" placeholder="gpt-4o-mini" />
+        
+        <label>Chroma DB Collection Name</label>
+        <input class="form-input" type="text" [(ngModel)]="chromaDbCollectionName" placeholder="rag-collection" />
+      </div>
+
+      <div class="col">
+        <label>Azure API Key</label>
+        <input class="form-input" type="password" [(ngModel)]="azureApiKey" placeholder="your-api-key" />
+
+        <label>Azure Embed Model API Version</label>
+        <input class="form-input" type="text" [(ngModel)]="embedModelApiVersion" placeholder="2023-05-15" />
+
+        <label>Azure Chat Completion Model API Version</label>
+        <input class="form-input" type="text" [(ngModel)]="chatCompletionModelApiVersion" placeholder="2023-05-15" />
+      </div>
+    </div>
+
+    <div class="config-actions">
+      <button class="btn btn-primary" [disabled]="!isConfigured" (click)="setConfig()">Set Config</button>
+      <div class="hint" *ngIf="!isConfigured">Note: Complete all fields to enable upload & query</div>
+    </div>
+  </section>
+
+  <section class="card" [class.disabled]="!isConfigured">
+    <h3>Upload Documents</h3>
+    <div class="row">
+      <input type="file" (change)="onFilesSelected($event)" multiple [disabled]="!isConfigured" />
+      <button class="btn" (click)="upload()" [disabled]="loadingUpload || !isConfigured">Upload & Index</button>
+    </div>
+    <div class="muted" *ngIf="loadingUpload">Indexing...</div>
+  </section>
+
+  <section class="card" [class.disabled]="!isConfigured">
+    <h3>Ask a Question</h3>
+    <textarea class="form-textarea" [value]="question" (input)="question = $event.target.value" rows="4" [disabled]="!isConfigured"></textarea>
+    <div class="row">
+      <button class="btn btn-primary" (click)="ask()" [disabled]="loadingQuery || !isConfigured">Submit Query</button>
+      <div class="muted" *ngIf="loadingQuery">Thinking...</div>
+    </div>
+  </section>
+
+  <section *ngIf="answer" class="card result-card">
+    <h3>Answer</h3>
+    <div class="answer">{{ answer }}</div>
+    <!-- <h4>Sources</h4>
+    <ul>
+      <li *ngFor="let s of sources">{{ s.source }} (chunk {{ s.chunk }})</li>
+    </ul> -->
+  </section>
+</div>
