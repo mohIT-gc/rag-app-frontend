@@ -7,6 +7,9 @@
     "build": "ng build",
     "test": "ng test"
   },
+  "engines": {
+  "node": "22.x" 
+  },
   "dependencies": {
     "@angular/animations": "~17.3.12",
     "@angular/common": "~17.3.12",
