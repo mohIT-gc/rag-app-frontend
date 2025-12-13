@@ -22,7 +22,7 @@ jobs:
       - name: Build Angular App
         run: |
           npm install
-          npm run build -- --configuration production # Runs your package.json build script
+          npm run build -- --configuration production
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
