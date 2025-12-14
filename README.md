@@ -25,18 +25,18 @@ Notes
 - If backend deployed into new Azure Web App, configure the backend url in environment.ts and environment.prod.ts 
   by default, keep the env files unchanged [https://gmuece553-team4-rag-backend-a2fghsejh3awbncp.canadacentral-01.azurewebsites.net]
 ```powershell
---environment.ts
-export const environment = {
-  production: false,
-  backendUrl: 'https://{your_backend_app_domain}.azurewebsites.net'
-};....
-]
---environment.prod.ts
-export const environment = {
-  production: false,
-  backendUrl: 'https://{your_backend_app_domain}.azurewebsites.net'
-};....
-]
+    --environment.ts
+    export const environment = {
+    production: false,
+    backendUrl: 'https://{your_backend_app_domain}.azurewebsites.net'
+    };....
+    
+    --environment.prod.ts
+    export const environment = {
+    production: false,
+    backendUrl: 'https://{your_backend_app_domain}.azurewebsites.net'
+    };....
+    
 ```
 
 The project code  can be accessed through github [https://github.com/mohIT-gc/rag-app-frontend]
