@@ -52,6 +52,12 @@ export class AppComponent {
     for (const f of this.selectedFiles) {
       fd.append('files', f, f.name);
     }
+    
+    fd.append('embedName', this.embeddingDeploymentName);
+    fd.append('apiversion', this.embedModelApiVersion);
+    fd.append('apikey', this.azureApiKey);
+    fd.append('collectionname', this.chromaDbCollectionName);
+    fd.append('azureEndpoint', this.azureEndpoint);
     this.loadingUpload = true;
     try {
       await this.http.post(`${this.backendUrl}/upload`, fd).toPromise();
@@ -70,7 +76,7 @@ export class AppComponent {
     this.answer = null;
     this.sources = [];
     try {
-      const resp: any = await this.http.post(`${this.backendUrl}/query`, { question: this.question }).toPromise();
+      const resp: any = await this.http.post(`${this.backendUrl}/query`, { question: this.question, embedName: this.embeddingDeploymentName, apiversion: this.chatCompletionModelApiVersion, apikey: this.azureApiKey, collectionname: this.chromaDbCollectionName, chatname: this.chatCompletionDeploymentName, endpoint: this.azureEndpoint }).toPromise();
       this.answer = resp.answer;
       this.sources = resp.sources || [];
     } catch (err) {
