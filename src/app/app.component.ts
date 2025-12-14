@@ -15,6 +15,7 @@ export class AppComponent {
   sources: any[] = [];
   loadingUpload = false;
   loadingQuery = false;
+  loadingConfig = false;
   backendUrl = environment.backendUrl;
 
   // Azure Config Fields
@@ -51,8 +52,6 @@ export class AppComponent {
     for (const f of this.selectedFiles) {
       fd.append('files', f, f.name);
     }
-    //fd.append('embeddingDeploymentName', this.embeddingDeploymentName);
-    //fd.append('embedModelApiVersion', this.embedModelApiVersion);
     this.loadingUpload = true;
     try {
       await this.http.post(`${this.backendUrl}/upload`, fd).toPromise();
@@ -83,6 +82,7 @@ export class AppComponent {
   }
 
   async setConfig() {
+    this.loadingConfig = true;
     const configPayload = {
       azureEndpoint: this.azureEndpoint,
       embeddingDeploymentName: this.embeddingDeploymentName,
@@ -98,6 +98,8 @@ export class AppComponent {
     } catch (err) {
       console.error(err);
       alert('Failed to save configuration');
+    } finally {
+      this.loadingConfig = false;
     }
   }
 }

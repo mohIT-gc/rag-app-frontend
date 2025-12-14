@@ -33,8 +33,9 @@
     </div>
 
     <div class="config-actions">
-      <button class="btn btn-primary" [disabled]="!isConfigured" (click)="setConfig()">Set Config</button>
+      <button class="btn btn-primary" [disabled]="loadingConfig || !isConfigured" (click)="setConfig()">Set Config</button>
       <div class="hint" *ngIf="!isConfigured">Note: Complete all fields to enable upload & query</div>
+      <div class="muted" *ngIf="loadingConfig">Setting Config...</div>
     </div>
   </section>
 
