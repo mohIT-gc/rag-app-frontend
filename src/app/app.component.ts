@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'RAG UI';
+  title = 'Personalized Learning RAG App';
   selectedFiles: File[] = [];
   question: string | null = '';
   answer: string | null = null;
